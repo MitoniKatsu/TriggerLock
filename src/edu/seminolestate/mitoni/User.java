@@ -1,0 +1,33 @@
+package edu.seminolestate.mitoni;
+
+import edu.seminolestate.mitoni.QueryRole.Role;
+
+public class User
+{
+	private String username;
+	private String password;
+	private Role userRole;
+	
+	public User(String user, String pass, Role role)
+	{
+		this.username = user;
+		this.password = pass;
+		this.userRole = role;
+	}
+	
+	public String getUsername()
+	{
+		return username;
+	}
+	
+	public String getPassword()
+	{
+		return password;
+	}
+	
+	public Role getUserRole()
+	{
+		return userRole;
+	}
+	
+}
