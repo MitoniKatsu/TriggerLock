@@ -3,7 +3,11 @@ package edu.seminolestate.mitoni;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the customer object, to be passed to customer queries
+ */
 public class Customer
 {
 	

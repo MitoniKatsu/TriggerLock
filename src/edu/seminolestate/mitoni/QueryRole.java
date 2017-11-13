@@ -6,7 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the role query, used when authenticating login credentials and access restrictions
+ */
 public class QueryRole extends Query
 {
 

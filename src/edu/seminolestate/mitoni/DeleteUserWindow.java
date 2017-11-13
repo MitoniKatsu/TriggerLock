@@ -1,16 +1,23 @@
 package edu.seminolestate.mitoni;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the delete user window.
+ */
 public class DeleteUserWindow
 {
-	JInternalFrame frmDeleteUser;
-	JButton btnDeleteUser;
-	JButton btnCancelDeleteUser;
+	protected JInternalFrame frmDeleteUser;
+	private JButton btnDeleteUser;
+	private JButton btnCancelDeleteUser;
 	
 	private JFormattedTextField fldDeleteUsername;
 	
@@ -37,6 +44,28 @@ public class DeleteUserWindow
 		btnCancelDeleteUser = new JButton("Cancel");
 		btnCancelDeleteUser.setBounds(119, 60, 89, 23);
 		frmDeleteUser.getContentPane().add(btnCancelDeleteUser);
+		
+		//Event Handlers
+		
+		btnDeleteUser.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				UserQuery deleteUser = new UserQuery(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				deleteUser.dropUser(getfldDeleteUserValue());
+				clearFldDeleteUsername();
+				frmDeleteUser.setVisible(false);
+			}
+		});
+
+		btnCancelDeleteUser.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				clearFldDeleteUsername();
+				frmDeleteUser.setVisible(false);
+			}
+		});
 	}
 	
 	//Getters-Setters
@@ -49,4 +78,6 @@ public class DeleteUserWindow
 	{
 		fldDeleteUsername.setText(null);
 	}
+	
+	//public methods
 }

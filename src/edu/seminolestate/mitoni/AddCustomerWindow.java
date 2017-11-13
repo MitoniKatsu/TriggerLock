@@ -1,6 +1,9 @@
 package edu.seminolestate.mitoni;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,12 +15,16 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the add customer window
+ */
 public class AddCustomerWindow
 {
-	JInternalFrame frmAddCustomer;
-	JButton btnAddCustSubmit;
-	JButton btnAddCustCancel;
+	protected JInternalFrame frmAddCustomer;
+	private JButton btnAddCustSubmit;
+	private JButton btnAddCustCancel;
 	
 	private JFormattedTextField fldAddress;
 	private JComboBox<String> cmbxState;
@@ -137,6 +144,29 @@ public class AddCustomerWindow
 		btnAddCustCancel = new JButton("Cancel");
 		btnAddCustCancel.setBounds(406, 137, 89, 23);
 		frmAddCustomer.getContentPane().add(btnAddCustCancel);
+		
+		//Event Handlers
+		btnAddCustSubmit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				QueryCustomer addNew = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				if (validateAddCustomer() != null)
+				{
+					addNew.addCustomer(validateAddCustomer());
+					clearAddCustomer();
+				}
+			}
+		});
+
+		btnAddCustCancel.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				clearAddCustomer();
+			}
+		});
+		
 	}
 	
 	//Getters-Setters
@@ -191,6 +221,7 @@ public class AddCustomerWindow
 		fldCity.setText(null);
 		cmbxState.setSelectedIndex(0);
 		fldZip.setText(null);
+		fldEmail.setText(null);
 		fldPhone.setText(null);
 		ckbxMember.setSelected(false);
 		frmAddCustomer.setVisible(false);
@@ -220,7 +251,7 @@ public class AddCustomerWindow
 		else
 		{
 			// pass first name
-			first = fldFirst.getText();
+			first = fldFirst.getText().toUpperCase();
 
 			// validate last name
 			if (fldLast.getText().trim().isEmpty())
@@ -231,13 +262,13 @@ public class AddCustomerWindow
 			else
 			{
 				// pass last name
-				last = fldLast.getText();
+				last = fldLast.getText().toUpperCase();
 
 				// pass address
-				address = fldAddress.getText();
+				address = fldAddress.getText().toUpperCase();
 
 				// pass city
-				city = fldCity.getText();
+				city = fldCity.getText().toUpperCase();
 
 				// validate State
 				if (cmbxState.getSelectedIndex() == 0)
@@ -247,7 +278,7 @@ public class AddCustomerWindow
 				else
 				{
 					// pass State
-					state = STATES[cmbxState.getSelectedIndex()];
+					state = STATES[cmbxState.getSelectedIndex()].toUpperCase();
 				}
 
 			}
@@ -304,7 +335,7 @@ public class AddCustomerWindow
 			Matcher n = q.matcher(fldEmail.getText());
 			if (n.matches())
 			{
-				email = fldEmail.getText();
+				email = fldEmail.getText().toUpperCase();
 			}
 			else
 			{
@@ -324,6 +355,10 @@ public class AddCustomerWindow
 			java.util.Date nextYear = new java.util.Date();
 			nextYear.setTime(exp.getTimeInMillis());
 			expDate = nextYear;
+		}
+		else
+		{
+			expDate = new Date();
 		}
 
 		if (valid)

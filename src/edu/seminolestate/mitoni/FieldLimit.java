@@ -3,7 +3,11 @@ package edu.seminolestate.mitoni;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the field limit object, for limiting characters entered in text fields.
+ */
 public class FieldLimit extends PlainDocument
 {
 	/**

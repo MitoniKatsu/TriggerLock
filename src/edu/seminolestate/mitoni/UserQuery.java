@@ -7,7 +7,11 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the user query logic and methods related to SQL users
+ */
 public class UserQuery extends Query
 {
 
