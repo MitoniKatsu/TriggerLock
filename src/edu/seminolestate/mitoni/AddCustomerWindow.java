@@ -150,7 +150,7 @@ public class AddCustomerWindow
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				QueryCustomer addNew = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				QueryCustomer addNew = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 				if (validateAddCustomer() != null)
 				{
 					addNew.addCustomer(validateAddCustomer());

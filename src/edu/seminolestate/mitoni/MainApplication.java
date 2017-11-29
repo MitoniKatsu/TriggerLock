@@ -11,12 +11,13 @@ import javax.swing.JDesktopPane;
 
 
 import edu.seminolestate.mitoni.QueryRole.Role;
+
 /* 
  * Written by Christian Lundblad
  * November 11, 2017
  * This primary class contains the main window, and the application method.
  */
-public class MainWindow
+public class MainApplication
 {
 	// global static variables
 	private static String currentUser; // hold username
@@ -30,9 +31,18 @@ public class MainWindow
 	private JDesktopPane desktopPane; //main pane for all windows
 	protected static LoginWindow loginWindow;
 	protected static AddUserWindow addUserWindow;
+	protected static ListUserRoles listUserRoles;
+	protected static EditUserRole editUserRole;
 	protected static DeleteUserWindow deleteUserWindow;
 	protected static AddCustomerWindow addCustomerWindow;
 	protected static CustomerSearchWindow customerSearchWindow;
+	protected static EditCustomerWindow editCustomerWindow;
+	protected static AddCaliberWindow addCaliberWindow;
+	protected static ListCaliberWindow listCaliberWindow;
+	protected static EditCaliberWindow editCaliberWindow;
+	protected static AddManufacturerWindow addManufacturerWindow;
+	protected static ListManufacturersWindow listManufacturersWindow;
+	protected static EditManufacturerWindow editManufacturerWindow;
 	private MainMenuBar mainMenu;
 
 
@@ -82,7 +92,7 @@ public class MainWindow
 	
 	
 	// create the main window
-	public MainWindow()
+	public MainApplication()
 	{
 		initialize();
 	}
@@ -93,7 +103,7 @@ public class MainWindow
 		// Main JFrame
 		frmTriggerLock = new JFrame();
 		frmTriggerLock.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(MainWindow.class.getResource("/edu/seminolestate/mitoni/icon.png")));
+				.getImage(MainApplication.class.getResource("/edu/seminolestate/mitoni/icon.png")));
 		frmTriggerLock.setPreferredSize(new Dimension(1024, 768));
 		frmTriggerLock.setTitle("Trigger-Lock Management System");
 		frmTriggerLock.setBounds(100, 100, 1024, 768);
@@ -109,12 +119,30 @@ public class MainWindow
 		desktopPane.add(loginWindow.frmLogin);
 		addUserWindow = new AddUserWindow();
 		desktopPane.add(addUserWindow.frmAddUser);
+		listUserRoles = new ListUserRoles();
+		desktopPane.add(listUserRoles.frmListUserRoles);
+		editUserRole = new EditUserRole();
+		desktopPane.add(editUserRole.frmEditUserRole);
 		deleteUserWindow = new DeleteUserWindow();
 		desktopPane.add(deleteUserWindow.frmDeleteUser);
 		addCustomerWindow = new AddCustomerWindow();
 		desktopPane.add(addCustomerWindow.frmAddCustomer);
 		customerSearchWindow  = new CustomerSearchWindow();
 		desktopPane.add(customerSearchWindow.frmCustomerSearch);
+		editCustomerWindow = new EditCustomerWindow();
+		desktopPane.add(editCustomerWindow.frmEditCustomer);
+		addCaliberWindow = new AddCaliberWindow();
+		desktopPane.add(addCaliberWindow.frmAddCaliber);
+		listCaliberWindow = new ListCaliberWindow();
+		desktopPane.add(listCaliberWindow.frmListCalibers);
+		editCaliberWindow = new EditCaliberWindow();
+		desktopPane.add(editCaliberWindow.frmEditCaliber);
+		addManufacturerWindow = new AddManufacturerWindow();
+		desktopPane.add(addManufacturerWindow.frmAddManufacturer);
+		listManufacturersWindow = new ListManufacturersWindow();
+		desktopPane.add(listManufacturersWindow.frmListManufacturers);
+		editManufacturerWindow = new EditManufacturerWindow();
+		desktopPane.add(editManufacturerWindow.frmEditManufacturer);
 
 		// confirm close when "x" is clicked
 		frmTriggerLock.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -149,7 +177,7 @@ public class MainWindow
 			{
 				try
 				{
-					MainWindow window = new MainWindow();
+					MainApplication window = new MainApplication();
 					window.frmTriggerLock.setVisible(true);
 				}
 				catch (Exception e)

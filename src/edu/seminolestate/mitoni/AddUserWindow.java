@@ -118,7 +118,7 @@ public class AddUserWindow
 				// create new user to pass to user query
 				User newUser = new User(getFldUsername(), getFldPassword(), newRole);
 				// create new user query
-				UserQuery addUser = new UserQuery(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				UserQuery addUser = new UserQuery(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 				addUser.createUser(newUser);
 				clearFldUsername();
 				clearFldPassword();
@@ -156,7 +156,7 @@ public class AddUserWindow
 	
 	public void clearFldPassword()
 	{
-		fldUsername.setText(null);
+		fldPassword.setText(null);
 	}
 	
 	public void clearRadGroup()

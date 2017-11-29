@@ -51,7 +51,7 @@ public class DeleteUserWindow
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				UserQuery deleteUser = new UserQuery(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				UserQuery deleteUser = new UserQuery(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 				deleteUser.dropUser(getfldDeleteUserValue());
 				clearFldDeleteUsername();
 				frmDeleteUser.setVisible(false);

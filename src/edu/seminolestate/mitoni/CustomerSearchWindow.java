@@ -178,7 +178,16 @@ public class CustomerSearchWindow
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				//TODO stub
+				String loadNum = (String) tblResults.getModel().getValueAt(tblResults.getSelectedRow(), 0);
+				
+				QueryCustomer newQuery = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);					
+				ResultSet loadRS = newQuery.loadEditCustomer(loadNum);
+				//parse results to edit window
+				MainApplication.editCustomerWindow.parseLoadCustomer(loadRS);
+				//load edit window
+				MainApplication.editCustomerWindow.frmEditCustomer.setVisible(true);
+				newQuery.closeSQL();
+				clear();				
 			}
 		});
 
@@ -186,16 +195,16 @@ public class CustomerSearchWindow
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				String RowId = (String) tblResults.getModel().getValueAt(tblResults.getSelectedRow(), 0);
+				String rowID = (String) tblResults.getModel().getValueAt(tblResults.getSelectedRow(), 0);
 				
-				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer number "+ RowId
+				int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete customer number "+ rowID
 						+"? This operation cannot be reversed!", "Confirm Delete", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 
 				if (result == JOptionPane.YES_OPTION)
 				{
-					QueryCustomer newQuery = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);					
-					newQuery.deleteCustomer(RowId);
+					QueryCustomer newQuery = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);					
+					newQuery.deleteCustomer(rowID);
 					clear();
 				}
 				else
@@ -210,7 +219,7 @@ public class CustomerSearchWindow
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				QueryCustomer newSearch = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				QueryCustomer newSearch = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 				if (!getFldCustNum().trim().isEmpty())
 				{
 					try
@@ -289,7 +298,7 @@ public class CustomerSearchWindow
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				QueryCustomer newSearch = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				QueryCustomer newSearch = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 
 				String custFirst = getFldFirst().trim();
 				String custLast = getFldLast().trim();
@@ -326,7 +335,7 @@ public class CustomerSearchWindow
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				QueryCustomer newSearch = new QueryCustomer(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword(), null);
+				QueryCustomer newSearch = new QueryCustomer(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword(), null);
 				long custPhone;
 
 				if (!getFldPhone().trim().isEmpty())

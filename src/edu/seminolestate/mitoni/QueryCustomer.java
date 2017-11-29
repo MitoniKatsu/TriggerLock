@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 /* 
  * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the customer query, the backend logic and methods behind any SQL processes on the customer table
+ * November 25, 2017
+ * This class contains the customer query, the back-end logic and methods behind any SQL processes on the customer table
  */
 public class QueryCustomer extends Query
 {
@@ -178,6 +178,7 @@ public class QueryCustomer extends Query
 			stmt = newConnect.createStatement();
 			stmt.execute(deleteCustQuery);
 			newConnect.commit();
+			JOptionPane.showMessageDialog(null, "Deleted customer number " + rowID + " successfully.");
 		}
 		catch (Exception e)
 		{
@@ -186,7 +187,7 @@ public class QueryCustomer extends Query
 		finally 
 		{
 			closeSQL();
-			JOptionPane.showMessageDialog(null, "Deleted customer number " + rowID + " successully.");
+			
 		}
 	}
 	
@@ -207,14 +208,42 @@ public class QueryCustomer extends Query
 		}
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Load customer failed. Please try again, or see your system admin.");
-		}
-		finally 
-		{
-			closeSQL();
+			JOptionPane.showMessageDialog(null, "Unable to load customer record #" + custNum + ". Please try again, or see your system admin.");
 		}
 		
 		return null;
 	}
+	
+	public void updateCustomer(String updateQuery)
+	{
+		if (updateQuery != "")
+		{
+			try
+			{
+				newConnect = DriverManager.getConnection("jdbc:oracle:thin:@" + this.getPath() + ":xe", this.getUsername(),
+						this.getPassword());
+
+				stmt = newConnect.createStatement();
+				stmt.execute(updateQuery);
+				newConnect.commit();
+				JOptionPane.showMessageDialog(null, "Update completed successfully.");
+			
+			}
+			catch (Exception e)
+			{
+				JOptionPane.showMessageDialog(null, "Unable to update customer record. Please try again, or see your system admin.");
+			}
+			finally
+			{
+				closeSQL();
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "Unable to update customer record. Please try again, or see your system admin.");
+		}
+		
+	}
+	
 
 }

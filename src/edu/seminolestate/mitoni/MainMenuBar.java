@@ -18,19 +18,29 @@ public class MainMenuBar
 {
 	protected static JMenuBar menuBar;
 	// File Menu
-	private JMenu menuFile;
+	private static JMenu menuFile;
 	private static JMenuItem menuFileLogin;
 	private static JMenuItem menuFileLogout;
-	private JMenuItem menuCustomersSearch;
-	private JMenuItem menuFileManageAdd;
-	private JMenuItem menuFileManageDelete;
-	private JMenuItem menuFileManageEdit;
-	private JSeparator separator;
-	private JMenuItem menuFileExit;
-	private JMenuItem menuCustomerAddCustomer;
-	private JMenu menuHelp;
-	private JMenuItem menuHelpAbout;
+	private static JMenuItem menuCustomersSearch;
+	private static JMenuItem menuFileManageAdd;
+	private static JMenuItem menuFileManageDelete;
+	private static JMenuItem menuFileManageEdit;
+	private static JSeparator separator;
+	private static JMenuItem menuFileExit;
+	private static JMenuItem menuCustomerAddCustomer;
+	private static JMenu menuHelp;
+	private static JMenuItem menuHelpAbout;
 	private static JMenu menuCustomer;
+	private static JMenu menuGuns;
+	private static JMenu menuAmmo;
+	private static JMenu menuManage;
+	private static JMenu menuManageCaliber;
+	private static JMenuItem menuManageCaliberAdd;
+	private static JMenuItem menuManageCaliberEditOrDelete;
+	private static JMenu menuManageManufacturers;
+	private static JMenuItem menuManageManufacturersAdd;
+	private static JMenuItem menuManageManufacturersEditOrDelete;
+	
 	private static JMenu menuReports;
 	private static JSeparator sepManageUser;
 	private static JMenu menuFileManageUsers;
@@ -60,7 +70,7 @@ public class MainMenuBar
 		menuFileManageDelete = new JMenuItem("Delete User");
 		menuFileManageUsers.add(menuFileManageDelete);
 
-		menuFileManageEdit = new JMenuItem("Edit User Role");
+		menuFileManageEdit = new JMenuItem("List/Edit User Role");
 		menuFileManageUsers.add(menuFileManageEdit);
 		menuFile.add(sepManageUser);
 		menuFileLogin.setMnemonic('N');
@@ -87,6 +97,42 @@ public class MainMenuBar
 
 		menuCustomerAddCustomer = new JMenuItem("Add Customer");
 		menuCustomer.add(menuCustomerAddCustomer);
+		
+		menuGuns = new JMenu("Guns");
+		menuGuns.setVisible(false);
+		menuBar.add(menuGuns);
+		
+		menuAmmo = new JMenu("Ammo");
+		menuAmmo.setVisible(false);
+		menuBar.add(menuAmmo);
+		
+		menuManage = new JMenu("Manage");
+		menuManage.setMnemonic('M');
+		menuManage.setVisible(false);
+		menuBar.add(menuManage);
+		
+		menuManageCaliber = new JMenu("Caliber List");
+		menuManage.add(menuManageCaliber);
+		
+		menuManageCaliberAdd = new JMenuItem("Add");
+		menuManageCaliberAdd.setMnemonic('C');
+		menuManageCaliber.add(menuManageCaliberAdd);
+		
+		menuManageCaliberEditOrDelete = new JMenuItem("Edit/Delete");
+		menuManageCaliberEditOrDelete.setMnemonic('D');
+		menuManageCaliber.add(menuManageCaliberEditOrDelete);
+		
+		menuManageManufacturers = new JMenu("Manufacturer List");
+		menuManage.add(menuManageManufacturers);
+		
+		menuManageManufacturersAdd = new JMenuItem("Add");
+		menuManageManufacturersAdd.setMnemonic('A');
+		menuManageManufacturers.add(menuManageManufacturersAdd);
+		
+		menuManageManufacturersEditOrDelete = new JMenuItem("Edit/Delete");
+		menuManageManufacturersEditOrDelete.setMnemonic('E');
+		menuManageManufacturers.add(menuManageManufacturersEditOrDelete);
+		
 		menuReports = new JMenu("Reports");
 		menuReports.setVisible(false);
 		menuBar.add(menuReports);
@@ -102,7 +148,7 @@ public class MainMenuBar
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MainWindow.loginWindow.frmLogin.setVisible(true);
+				MainApplication.loginWindow.frmLogin.setVisible(true);
 			}
 		});
 		
@@ -110,7 +156,7 @@ public class MainMenuBar
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MainWindow.addUserWindow.frmAddUser.setVisible(true);
+				MainApplication.addUserWindow.frmAddUser.setVisible(true);
 			}
 		});
 		
@@ -118,7 +164,17 @@ public class MainMenuBar
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MainWindow.deleteUserWindow.frmDeleteUser.setVisible(true);
+				MainApplication.deleteUserWindow.frmDeleteUser.setVisible(true);
+			}
+		});
+		
+		menuFileManageEdit.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.listUserRoles.frmListUserRoles.setVisible(true);
+				
 			}
 		});
 		
@@ -153,7 +209,7 @@ public class MainMenuBar
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				MainWindow.customerSearchWindow.frmCustomerSearch.setVisible(true);
+				MainApplication.customerSearchWindow.frmCustomerSearch.setVisible(true);
 			}
 		});
 		
@@ -161,9 +217,48 @@ public class MainMenuBar
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				MainWindow.addCustomerWindow.frmAddCustomer.setVisible(true);
+				MainApplication.addCustomerWindow.frmAddCustomer.setVisible(true);
 			}
 		});
+		
+		menuManageCaliberAdd.addActionListener(new ActionListener()
+		{
+			
+
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.addCaliberWindow.frmAddCaliber.setVisible(true);
+			}
+		});
+		
+		menuManageCaliberEditOrDelete.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.listCaliberWindow.frmListCalibers.setVisible(true);
+			}
+		});
+		
+		menuManageManufacturersAdd.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.addManufacturerWindow.frmAddManufacturer.setVisible(true);
+			}
+		});
+		
+		menuManageManufacturersEditOrDelete.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.listManufacturersWindow.frmListManufacturers.setVisible(true);				
+			}
+		});
+		
+		
 	
 	}
 	
@@ -198,6 +293,21 @@ public class MainMenuBar
 		menuCustomer.setVisible(bool);
 	}
 	
+	public static void setMenuGunsVisibility(boolean bool)
+	{
+		menuGuns.setVisible(bool);
+	}
+	
+	public static void setMenuAmmoVisibility(boolean bool)
+	{
+		menuAmmo.setVisible(bool);
+	}
+	
+	public static void setMenuManageVisibility(boolean bool)
+	{
+		menuManage.setVisible(bool);
+	}
+	
 	public static void setMenuReportsVisibility(boolean bool)
 	{
 		menuReports.setVisible(bool);
@@ -212,10 +322,13 @@ public class MainMenuBar
 		menuFileManageUsers.setVisible(false);
 		sepManageUser.setVisible(false);
 		menuCustomer.setVisible(false);
+		menuGuns.setVisible(false);
+		menuAmmo.setVisible(false);
+		menuManage.setVisible(false);
 		menuReports.setVisible(false);
-		MainWindow.setCurrentUser(null);
-		MainWindow.setCurrentPassword(null);
-		MainWindow.setCurrentRole(null);
+		MainApplication.setCurrentUser(null);
+		MainApplication.setCurrentPassword(null);
+		MainApplication.setCurrentRole(null);
 	}
 		
 }

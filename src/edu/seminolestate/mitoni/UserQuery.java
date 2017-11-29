@@ -59,4 +59,28 @@ public class UserQuery extends Query
 			System.out.println(e.toString());
 		}
 	}
+
+	public void updateUser(String revokeQuery, String grantQuery)
+	{
+		try
+		{
+			newConnect = DriverManager.getConnection("jdbc:oracle:thin:@" + this.getPath() + ":xe", this.getUsername(), this.getPassword());
+			
+			stmt = newConnect.createStatement();
+			stmt.execute(revokeQuery);
+			stmt.execute(grantQuery);
+			newConnect.close();
+			JOptionPane.showMessageDialog(null, "User role updated Successfully.");
+		} 
+		catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, "Update failed. Please try again, or see your system admin.");
+			System.out.println(e.toString());
+		}
+		finally
+		{
+			closeSQL();
+		}
+		
+	}
 }

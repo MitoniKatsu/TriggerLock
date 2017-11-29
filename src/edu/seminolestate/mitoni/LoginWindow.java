@@ -84,11 +84,11 @@ public class LoginWindow
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				MainWindow.setCurrentUser(getUserFldValue());
-				MainWindow.setCurrentPassword(getPswPasswordValue());
-				MainWindow.setCurrentRole(Role.INVALID); // default role
+				MainApplication.setCurrentUser(getUserFldValue());
+				MainApplication.setCurrentPassword(getPswPasswordValue());
+				MainApplication.setCurrentRole(Role.INVALID); // default role
 
-				switch (loginAndVerify(MainWindow.getCurrentUser(), MainWindow.getCurrentPassword())) 
+				switch (loginAndVerify(MainApplication.getCurrentUser(), MainApplication.getCurrentPassword())) 
 				
 				// verify  if login is valid, and if so, which role the user has
 				{
@@ -99,8 +99,10 @@ public class LoginWindow
 					MainMenuBar.setMenuFileManageUsersVisibility(true);
 					MainMenuBar.setSepManageUserVisibility(true);
 					MainMenuBar.setMenuCustomerVisibility(true);
+					MainMenuBar.setMenuGunsVisibility(true);
+					MainMenuBar.setMenuAmmoVisibility(true);
+					MainMenuBar.setMenuManageVisibility(true);
 					MainMenuBar.setMenuReportsVisibility(true);
-
 					break;
 				case OWNER:
 					verified(Role.OWNER);
@@ -109,6 +111,9 @@ public class LoginWindow
 					MainMenuBar.setMenuFileManageUsersVisibility(true);
 					MainMenuBar.setSepManageUserVisibility(true);
 					MainMenuBar.setMenuCustomerVisibility(true);
+					MainMenuBar.setMenuGunsVisibility(true);
+					MainMenuBar.setMenuAmmoVisibility(true);
+					MainMenuBar.setMenuManageVisibility(true);
 					MainMenuBar.setMenuReportsVisibility(true);
 					break;
 				case MANAGER:
@@ -117,6 +122,8 @@ public class LoginWindow
 					MainMenuBar.setMenuFileLogoutEnabled(true);
 					MainMenuBar.setMenuCustomerVisibility(true);
 					MainMenuBar.setMenuReportsVisibility(true);
+					MainMenuBar.setMenuGunsVisibility(true);
+					MainMenuBar.setMenuAmmoVisibility(true);
 					break;
 				case RETAIL:
 					verified(Role.RETAIL);
@@ -171,7 +178,7 @@ public class LoginWindow
 	
 	public void verified(Role verifiedRole)
 	{
-		MainWindow.setCurrentRole(verifiedRole);
+		MainApplication.setCurrentRole(verifiedRole);
 		clearUserFldValue();
 		;
 		clearPasswordFldValue();

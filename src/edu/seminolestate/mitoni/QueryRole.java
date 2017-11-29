@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 
 /* 
  * Written by Christian Lundblad
@@ -65,6 +66,60 @@ public class QueryRole extends Query
 		}
 		
 		return role;
+	}
+	
+	public ResultSet loadEditUserRole(String user)
+	{
+		String loadCaliberQuery = "SELECT * FROM DBA_role_privs WHERE grantee = '" + user + "'";
+		
+		try
+		{
+			newConnect = DriverManager.getConnection("jdbc:oracle:thin:@" + this.getPath() + ":xe", this.getUsername(),
+					this.getPassword());
+
+			stmt = newConnect.createStatement();
+			ResultSet rs = stmt.executeQuery(loadCaliberQuery);
+			newConnect.commit();
+			
+			return rs;
+		}
+		catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Unable to load record of " + user + ". Please try again, or see your system admin.");
+		}
+		
+		return null;
+	}
+	
+	public ResultSet listRoles()
+	{
+		String roleQuery = "SELECT grantee \"Username\", granted_role \"Role\" FROM DBA_role_privs " +
+				"where (granted_role = 'DBA' OR " +
+				"granted_role = 'OWNER' OR " +
+				"granted_role = 'MANAGER' OR " +
+				"granted_role = 'RETAIL') AND " +
+				"(grantee != 'SYS' AND " +
+				"grantee != 'SYSTEM' AND " +
+				"grantee != 'SYSADMIN') AND " +
+				"grantee != (SELECT USERNAME FROM user_role_privs) " +
+				"ORDER BY \"Role\"";
+		
+		try
+		{
+			newConnect = DriverManager.getConnection("jdbc:oracle:thin:@" + this.getPath() + ":xe", this.getUsername(), this.getPassword());
+			stmt = newConnect.createStatement();
+			ResultSet rs = stmt.executeQuery(roleQuery);
+			
+			return rs;
+			
+		}
+		catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, "Unable to load User list. Please see your system admin.");
+		}
+		
+		return null;
+		
 	}
 
 	
