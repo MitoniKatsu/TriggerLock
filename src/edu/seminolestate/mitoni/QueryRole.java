@@ -1,5 +1,9 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the role query, used when authenticating login credentials and access restrictions
+ */
 package edu.seminolestate.mitoni;
-
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,11 +11,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the role query, used when authenticating login credentials and access restrictions
- */
 public class QueryRole extends Query
 {
 
@@ -101,6 +100,7 @@ public class QueryRole extends Query
 				"(grantee != 'SYS' AND " +
 				"grantee != 'SYSTEM' AND " +
 				"grantee != 'SYSADMIN') AND " +
+				"grantee != 'OWNER' AND " +
 				"grantee != (SELECT USERNAME FROM user_role_privs) " +
 				"ORDER BY \"Role\"";
 		

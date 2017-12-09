@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the login window, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
 
 import java.awt.Font;
@@ -13,16 +18,9 @@ import javax.swing.JTextField;
 
 import edu.seminolestate.mitoni.QueryRole.Role;
 
-
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the login window
- */
 public class LoginWindow
 {
-	
-	protected JInternalFrame frmLogin;
+protected JInternalFrame frmLogin;
 	
 	private JButton btnLoginCancel;
 	private JButton btnLoginSubmit;	
@@ -185,5 +183,4 @@ public class LoginWindow
 		;
 		frmLogin.setVisible(false);
 	}
-
 }

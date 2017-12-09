@@ -1,12 +1,9 @@
 /* 
  * Written by Christian Lundblad
  * November 25, 2017
- * This class contains the List User Role Window, and menu related event handlers
+ * This class contains the List User Role Window, and related methods and event handlers
  */
-
 package edu.seminolestate.mitoni;
-
-
 
 import java.awt.Component;
 import java.awt.Rectangle;

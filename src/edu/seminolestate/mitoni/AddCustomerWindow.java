@@ -1,4 +1,10 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the add customer window, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +21,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the add customer window
- */
+
 public class AddCustomerWindow
 {
 	protected JInternalFrame frmAddCustomer;
@@ -64,9 +66,10 @@ public class AddCustomerWindow
 		lblState.setBounds(20, 64, 60, 14);
 		frmAddCustomer.getContentPane().add(lblState);
 
-		cmbxState = new JComboBox<String>(STATES);
+		cmbxState = new JComboBox<String>();
 		cmbxState.setBounds(88, 61, 66, 20);
 		frmAddCustomer.getContentPane().add(cmbxState);
+		loadStates();
 
 		JLabel lblZip = new JLabel("Zip Code");
 		lblZip.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -370,6 +373,14 @@ public class AddCustomerWindow
 		else
 		{
 			return null;
+		}
+	}
+	
+	private void loadStates()
+	{
+		for (int i = 0; i < STATES.length; i++)
+		{
+			cmbxState.addItem(STATES[i]);
 		}
 	}
 }

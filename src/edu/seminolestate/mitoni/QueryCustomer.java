@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 25, 2017
+ * This class contains the customer query, the back-end logic and methods behind any SQL processes on the customer table
+ */
 package edu.seminolestate.mitoni;
 
 import java.sql.DriverManager;
@@ -5,11 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-/* 
- * Written by Christian Lundblad
- * November 25, 2017
- * This class contains the customer query, the back-end logic and methods behind any SQL processes on the customer table
- */
+
 public class QueryCustomer extends Query
 {
 
@@ -243,6 +244,29 @@ public class QueryCustomer extends Query
 			JOptionPane.showMessageDialog(null, "Unable to update customer record. Please try again, or see your system admin.");
 		}
 		
+	}
+	
+	public ResultSet listMembers(String customerNumber)
+	{
+		String memberQuery = "SELECT customer#, membership, membership_exp FROM system.customers WHERE customer# = " + customerNumber;
+		
+		try
+		{
+			newConnect = DriverManager.getConnection("jdbc:oracle:thin:@" + this.getPath() + ":xe", this.getUsername(),
+					this.getPassword());
+
+			stmt = newConnect.createStatement();
+			ResultSet rs = stmt.executeQuery(memberQuery);
+			newConnect.commit();
+			
+			return rs;
+		}
+		catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Unable to load customer record #" + customerNumber + ". Please try again, or see your system admin.");
+		}
+		
+		return null;
 	}
 	
 

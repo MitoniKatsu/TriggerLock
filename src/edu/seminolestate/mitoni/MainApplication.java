@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This primary class contains the main window, and the application method.
+ */
 package edu.seminolestate.mitoni;
 
 import java.awt.EventQueue;
@@ -11,12 +16,11 @@ import javax.swing.JDesktopPane;
 
 
 import edu.seminolestate.mitoni.QueryRole.Role;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This primary class contains the main window, and the application method.
- */
 public class MainApplication
 {
 	// global static variables
@@ -37,12 +41,23 @@ public class MainApplication
 	protected static AddCustomerWindow addCustomerWindow;
 	protected static CustomerSearchWindow customerSearchWindow;
 	protected static EditCustomerWindow editCustomerWindow;
+	protected static AddRangeVisitWindow addrangeVisitWindow;
+	protected static RentalGunChooser rentalGunChooser;
+	protected static AmmoChooser ammoChooser;
+	protected static AddGunWindow addGunWindow;
+	protected static ListGunsWindow listGunsWindow;
+	protected static EditGunWindow editGunWindow;
+	protected static ReturnGunWindow returnGunWindow;
+	protected static AddAmmoWindow addAmmoWindow;
+	protected static ListAmmoWindow listAmmoWindow;
+	protected static EditAmmoWindow editAmmoWindow;
 	protected static AddCaliberWindow addCaliberWindow;
 	protected static ListCaliberWindow listCaliberWindow;
 	protected static EditCaliberWindow editCaliberWindow;
 	protected static AddManufacturerWindow addManufacturerWindow;
 	protected static ListManufacturersWindow listManufacturersWindow;
 	protected static EditManufacturerWindow editManufacturerWindow;
+	protected static ServiceReportWindow serviceReportWindow;
 	private MainMenuBar mainMenu;
 
 
@@ -102,6 +117,7 @@ public class MainApplication
 	{
 		// Main JFrame
 		frmTriggerLock = new JFrame();
+		frmTriggerLock.setResizable(false);
 		frmTriggerLock.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(MainApplication.class.getResource("/edu/seminolestate/mitoni/icon.png")));
 		frmTriggerLock.setPreferredSize(new Dimension(1024, 768));
@@ -109,7 +125,8 @@ public class MainApplication
 		frmTriggerLock.setBounds(100, 100, 1024, 768);
 		frmTriggerLock.getContentPane().setLayout(null);
 		desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 1008, 709);
+		desktopPane.setBackground(new Color(204, 204, 204));
+		desktopPane.setBounds(0, 0, 1018, 740);
 		frmTriggerLock.getContentPane().add(desktopPane);
 
 		// create and add new sub-windows
@@ -131,6 +148,26 @@ public class MainApplication
 		desktopPane.add(customerSearchWindow.frmCustomerSearch);
 		editCustomerWindow = new EditCustomerWindow();
 		desktopPane.add(editCustomerWindow.frmEditCustomer);
+		addrangeVisitWindow = new AddRangeVisitWindow();
+		desktopPane.add(addrangeVisitWindow.frmAddRangeVisit);
+		rentalGunChooser = new RentalGunChooser();
+		desktopPane.add(rentalGunChooser.frmRentalGunChooser);
+		ammoChooser = new AmmoChooser();
+		desktopPane.add(ammoChooser.frmAmmoChooser);
+		addGunWindow = new AddGunWindow();
+		desktopPane.add(addGunWindow.frmAddGun);
+		listGunsWindow = new ListGunsWindow();
+		desktopPane.add(listGunsWindow.frmListGuns);
+		editGunWindow = new EditGunWindow();
+		desktopPane.add(editGunWindow.frmEditGun);
+		returnGunWindow = new ReturnGunWindow();
+		desktopPane.add(returnGunWindow.frmReturnGun);
+		addAmmoWindow = new AddAmmoWindow();
+		desktopPane.add(addAmmoWindow.frmAddAmmo);
+		listAmmoWindow = new ListAmmoWindow();
+		desktopPane.add(listAmmoWindow.frmListAmmo);
+		editAmmoWindow = new EditAmmoWindow();
+		desktopPane.add(editAmmoWindow.frmEditAmmo);
 		addCaliberWindow = new AddCaliberWindow();
 		desktopPane.add(addCaliberWindow.frmAddCaliber);
 		listCaliberWindow = new ListCaliberWindow();
@@ -143,6 +180,14 @@ public class MainApplication
 		desktopPane.add(listManufacturersWindow.frmListManufacturers);
 		editManufacturerWindow = new EditManufacturerWindow();
 		desktopPane.add(editManufacturerWindow.frmEditManufacturer);
+		serviceReportWindow = new ServiceReportWindow();
+		desktopPane.add(serviceReportWindow.frmReport);
+		
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MainApplication.class.getResource("/edu/seminolestate/mitoni/rifle.png")));
+		label.setBounds(172, 212, 653, 326);
+		desktopPane.add(label);
 
 		// confirm close when "x" is clicked
 		frmTriggerLock.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -171,6 +216,11 @@ public class MainApplication
 	//Application	
 	public static void main(String[] args)
 	{
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
@@ -187,8 +237,4 @@ public class MainApplication
 			}
 		});
 	}
-	
-
-	
-
 }

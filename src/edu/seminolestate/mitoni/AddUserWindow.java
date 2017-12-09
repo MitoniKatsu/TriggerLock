@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the add user window, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
 
 import java.awt.event.ActionEvent;
@@ -12,14 +17,10 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import edu.seminolestate.mitoni.QueryRole.Role;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the add user window
- */
+
 public class AddUserWindow
 {
-	protected JInternalFrame frmAddUser;
+protected JInternalFrame frmAddUser;
 	
 	private JButton btnCancelCreateUser;
 	private JButton btnCreateUser;	
@@ -184,6 +185,5 @@ public class AddUserWindow
 		}
 		
 		return radIndex;
-	}	
-
+	}
 }

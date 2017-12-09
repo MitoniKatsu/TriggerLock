@@ -1,7 +1,7 @@
 /* 
  * Written by Christian Lundblad
  * November 25, 2017
- * This class contains the manufacturer query, the back-end logic and methods behind any SQL processes on the customer table
+ * This class contains the manufacturer query, the back-end logic and methods behind any SQL processes on the manufacturer table
  */
 package edu.seminolestate.mitoni;
 

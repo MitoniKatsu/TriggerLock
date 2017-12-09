@@ -1,5 +1,9 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the user query, the back-end logic and methods behind any SQL processes on the users of the database
+ */
 package edu.seminolestate.mitoni;
-
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,11 +11,6 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the user query logic and methods related to SQL users
- */
 public class UserQuery extends Query
 {
 

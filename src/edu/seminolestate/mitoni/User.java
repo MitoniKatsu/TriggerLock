@@ -1,11 +1,12 @@
-package edu.seminolestate.mitoni;
-
-import edu.seminolestate.mitoni.QueryRole.Role;
 /* 
  * Written by Christian Lundblad
  * November 11, 2017
  * This class contains the user object
  */
+package edu.seminolestate.mitoni;
+
+import edu.seminolestate.mitoni.QueryRole.Role;
+
 public class User
 {
 	private String username;

@@ -1,7 +1,7 @@
 /* 
  * Written by Christian Lundblad
  * November 25, 2017
- * This class contains the Add manufacturer Window, and menu related event handlers
+ * This class contains the Add manufacturer Window, and related methods and event handlers
  */
 
 package edu.seminolestate.mitoni;
@@ -53,11 +53,11 @@ public class AddManufacturerWindow
 		
 		JLabel lblCompanyName = new JLabel("*Company Name");
 		lblCompanyName.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCompanyName.setBounds(10,17,93,14);
+		lblCompanyName.setBounds(-5,17,131,14);
 		frmAddManufacturer.getContentPane().add(lblCompanyName);
 		
 		fldCompanyName = new JFormattedTextField();
-		fldCompanyName.setBounds(113,14,431,20);
+		fldCompanyName.setBounds(136,14,408,20);
 		frmAddManufacturer.getContentPane().add(fldCompanyName);
 		fldCompanyName.setDocument(new FieldLimit(20));
 		
@@ -180,6 +180,7 @@ public class AddManufacturerWindow
 		fldCompanyName.setText("");
 		fldAddress.setText("");
 		fldCity.setText("");
+		fldZip.setText("");
 		fldPhone.setText("");
 		cmbxState.setSelectedIndex(0);
 		frmAddManufacturer.setVisible(false);

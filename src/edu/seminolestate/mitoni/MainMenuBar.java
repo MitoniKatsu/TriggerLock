@@ -1,4 +1,10 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the main menu bar, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the main menu bar, and menu related event handlers
- */
+
 public class MainMenuBar
 {
 	protected static JMenuBar menuBar;
@@ -32,7 +34,12 @@ public class MainMenuBar
 	private static JMenuItem menuHelpAbout;
 	private static JMenu menuCustomer;
 	private static JMenu menuGuns;
+	private static JMenuItem menuGunsAdd;
+	private static JMenuItem menuGunsEditOrDelete;
+	private static JMenuItem menuGunsReturn;
 	private static JMenu menuAmmo;
+	private static JMenuItem menuAmmoAdd;
+	private static JMenuItem menuAmmoEditOrDelete;
 	private static JMenu menuManage;
 	private static JMenu menuManageCaliber;
 	private static JMenuItem menuManageCaliberAdd;
@@ -40,8 +47,8 @@ public class MainMenuBar
 	private static JMenu menuManageManufacturers;
 	private static JMenuItem menuManageManufacturersAdd;
 	private static JMenuItem menuManageManufacturersEditOrDelete;
-	
 	private static JMenu menuReports;
+	private static JMenuItem menuReportsServiceContact;
 	private static JSeparator sepManageUser;
 	private static JMenu menuFileManageUsers;
 
@@ -102,9 +109,24 @@ public class MainMenuBar
 		menuGuns.setVisible(false);
 		menuBar.add(menuGuns);
 		
+		menuGunsAdd = new JMenuItem("Add New");
+		menuGuns.add(menuGunsAdd);
+		
+		menuGunsEditOrDelete = new JMenuItem("Edit/Delete");
+		menuGuns.add(menuGunsEditOrDelete);
+		
+		menuGunsReturn = new JMenuItem("Return from Range/Cleaning");
+		menuGuns.add(menuGunsReturn);
+		
 		menuAmmo = new JMenu("Ammo");
 		menuAmmo.setVisible(false);
 		menuBar.add(menuAmmo);
+		
+		menuAmmoAdd = new JMenuItem("Add New");
+		menuAmmo.add(menuAmmoAdd);
+		
+		menuAmmoEditOrDelete = new JMenuItem("Edit/Delete");
+		menuAmmo.add(menuAmmoEditOrDelete);
 		
 		menuManage = new JMenu("Manage");
 		menuManage.setMnemonic('M');
@@ -136,6 +158,9 @@ public class MainMenuBar
 		menuReports = new JMenu("Reports");
 		menuReports.setVisible(false);
 		menuBar.add(menuReports);
+		
+		menuReportsServiceContact = new JMenuItem("Service Contacts");
+		menuReports.add(menuReportsServiceContact);
 
 		menuHelp = new JMenu("Help");
 		menuBar.add(menuHelp);
@@ -221,6 +246,52 @@ public class MainMenuBar
 			}
 		});
 		
+		menuGunsAdd.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.addGunWindow.frmAddGun.setVisible(true);
+			}
+		});
+		
+		menuGunsEditOrDelete.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.listGunsWindow.frmListGuns.setVisible(true);
+			}
+		});
+		
+		menuGunsReturn.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.returnGunWindow.frmReturnGun.setVisible(true);
+			}
+		});
+		
+		menuAmmoAdd.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.addAmmoWindow.frmAddAmmo.setVisible(true);
+				
+			}
+		});
+		
+		menuAmmoEditOrDelete.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.listAmmoWindow.frmListAmmo.setVisible(true);
+			}
+		});
+		
 		menuManageCaliberAdd.addActionListener(new ActionListener()
 		{
 			
@@ -255,6 +326,26 @@ public class MainMenuBar
 			public void actionPerformed(ActionEvent e)
 			{
 				MainApplication.listManufacturersWindow.frmListManufacturers.setVisible(true);				
+			}
+		});
+		
+		menuReportsServiceContact.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				MainApplication.serviceReportWindow.frmReport.setVisible(true);
+			}
+		});
+		
+		menuHelpAbout.addActionListener(new ActionListener()
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(null, "The Trigger-Lock Range Management System is designed by Christian Lundblad for Seminole State College of Florida.");
+				
 			}
 		});
 		

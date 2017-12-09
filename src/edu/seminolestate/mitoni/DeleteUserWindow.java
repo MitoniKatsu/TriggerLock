@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the delete user window, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
 
 import java.awt.event.ActionEvent;
@@ -8,11 +13,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the delete user window.
- */
+
 public class DeleteUserWindow
 {
 	protected JInternalFrame frmDeleteUser;

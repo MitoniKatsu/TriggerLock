@@ -1,7 +1,7 @@
 /* 
  * Written by Christian Lundblad
  * November 25, 2017
- * This class contains the Edit Customer Window, and menu related event handlers
+ * This class contains the Edit Customer Window, and related methods and event handlers
  */
 
 package edu.seminolestate.mitoni;
@@ -422,7 +422,6 @@ public class EditCustomerWindow
 		if (ckbxMember.isSelected())
 		{
 			membership = 1;
-
 		}
 
 		if (valid)

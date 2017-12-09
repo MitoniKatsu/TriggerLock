@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This abstract class contains the query class, extended to all of the different SQL query child classes
+ */
 package edu.seminolestate.mitoni;
 
 import java.sql.Connection;
@@ -5,11 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This abstract class contains the query class, extended to all of the different SQL query child classes
- */
+
 public abstract class Query
 {
 

@@ -1,3 +1,8 @@
+/* 
+ * Written by Christian Lundblad
+ * November 11, 2017
+ * This class contains the customer search window, and related methods and event handlers
+ */
 package edu.seminolestate.mitoni;
 
 import java.awt.Component;
@@ -28,11 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-/* 
- * Written by Christian Lundblad
- * November 11, 2017
- * This class contains the customer search window.
- */
+
 public class CustomerSearchWindow
 {
 	protected JInternalFrame frmCustomerSearch;
@@ -42,6 +43,7 @@ public class CustomerSearchWindow
 	private JButton btnCustSearchCustNumCancel;
 	private JButton btnCustSearchPhoneSearch;
 	private JButton btnCustSearchPhoneCancel;
+	private JMenuItem mntmAddRangeVisit;
 	private JMenuItem mntmEditCustomer;
 	private JMenuItem mntmDeleteCustomer;
 	private DefaultTableModel model;
@@ -157,11 +159,14 @@ public class CustomerSearchWindow
 
 		JPopupMenu ctxtCustomerSearchResult = new JPopupMenu();
 
-		mntmEditCustomer = new JMenuItem("Edit Customer");
-		ctxtCustomerSearchResult.add(mntmEditCustomer);
+		mntmAddRangeVisit = new JMenuItem("Open New Range Visit");
+		ctxtCustomerSearchResult.add(mntmAddRangeVisit);
 		
 		JSeparator ctxtSeparator = new JSeparator();
 		ctxtCustomerSearchResult.add(ctxtSeparator);
+		
+		mntmEditCustomer = new JMenuItem("Edit Customer");
+		ctxtCustomerSearchResult.add(mntmEditCustomer);
 
 		tblResults = new JTable();
 		addPopup(tblResults, ctxtCustomerSearchResult);
@@ -173,6 +178,20 @@ public class CustomerSearchWindow
 		splitPane.setDividerLocation(65);
 		
 		//Event Handlers
+		
+		mntmAddRangeVisit.addActionListener(new ActionListener()
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				String custNum =  (String) tblResults.getModel().getValueAt(tblResults.getSelectedRow(), 0);
+				
+				//pass to add range visit window
+				MainApplication.addrangeVisitWindow.setCustomerNumber(custNum);
+				//open add range visit window
+				MainApplication.addrangeVisitWindow.frmAddRangeVisit.setVisible(true);
+			}
+		});
 		
 		mntmEditCustomer.addActionListener(new ActionListener()
 		{
@@ -465,7 +484,10 @@ public class CustomerSearchWindow
 		fldLast.setText(null);
 		fldPhone.setText(null);
 		frmCustomerSearch.setVisible(false);
-		model.setRowCount(0);
+		if (model != null)
+		{
+			model.setRowCount(0);
+		}		
 	}
 
 	private void addPopup(Component component, final JPopupMenu popup)
@@ -498,5 +520,4 @@ public class CustomerSearchWindow
 		});
 	}
 
-	
 }
